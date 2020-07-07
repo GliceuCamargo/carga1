@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="aviagem" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2453d8b-42f8-4d98-a0e5-3de25ebd38b1">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#8FCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F8F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#8FCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#8FCCB7">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFE6DE">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F8F6"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="via" uuid="684c9375-41fb-437e-966b-07dc2f7910d3">
+		<parameter name="var1" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT
+     viagem.`lancamentoData` AS viagem_lancamentoData,
+          viagem.`valorAbastecimento` AS viagem_valorAbastecimento,
+     viagem.`litrosAbastecimento` AS viagem_litrosAbastecimento,
+     viagem.`valorGorjeta` AS viagem_valorGorjeta,
+     viagem.`valorDespesaGeral` AS viagem_valorDespesaGeral,
+     viagem.`valorOficina` AS viagem_valorOficina,
+     viagem.`valorComissao` AS viagem_valorComissao,
+     viagem.`valorPedagios` AS viagem_valorPedagios,
+     viagem.`valorPneus` AS viagem_valorPneus,
+     viagem.`valorJuros` AS viagem_valorJuros,
+     viagem.`valorOleoFiltro` AS viagem_valorOleoFiltro,
+     viagem.`descricao` AS viagem_descricao
+FROM
+     `viagem` viagem where numeroViagem= $P{var1} ;]]>
+		</queryString>
+		<field name="viagem_lancamentoData" class="java.sql.Date"/>
+		<field name="viagem_valorAbastecimento" class="java.math.BigDecimal"/>
+		<field name="viagem_litrosAbastecimento" class="java.lang.Float"/>
+		<field name="viagem_valorGorjeta" class="java.math.BigDecimal"/>
+		<field name="viagem_valorDespesaGeral" class="java.math.BigDecimal"/>
+		<field name="viagem_valorOficina" class="java.math.BigDecimal"/>
+		<field name="viagem_valorComissao" class="java.math.BigDecimal"/>
+		<field name="viagem_valorPedagios" class="java.math.BigDecimal"/>
+		<field name="viagem_valorPneus" class="java.math.BigDecimal"/>
+		<field name="viagem_valorJuros" class="java.math.BigDecimal"/>
+		<field name="viagem_valorOleoFiltro" class="java.math.BigDecimal"/>
+		<field name="viagem_descricao" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="var2" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select *,totalDespesas(numeroViagem), kmRodado(numeroViagem), somaFretes(numeroViagem),saldoAtual(numeroViagem), saldoViagem(numeroViagem),mediaCombustivel(numeroViagem),mediaPrecoCombustivel(numeroViagem)  from viagem where numeroViagem= $P{var2};]]>
+	</queryString>
+	<field name="PKIDViagem" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroViagem" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lancamentoData" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorAbastecimento" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="litrosAbastecimento" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorGorjeta" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorDespesaGeral" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorOficina" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorBateria" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorPneus" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorComissao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="freteDestino" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="freteRetorno" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="saldoAnterior" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kmInicial" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kmFinal" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorOleoFiltro" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorPedagios" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorJuros" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorMultas" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorRetirada" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorAluguel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="suspensao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="consorcio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalDespesas(numeroViagem)" class="java.lang.Float"/>
+	<field name="kmRodado(numeroViagem)" class="java.lang.Float"/>
+	<field name="somaFretes(numeroViagem)" class="java.lang.Float"/>
+	<field name="saldoAtual(numeroViagem)" class="java.lang.Float"/>
+	<field name="saldoViagem(numeroViagem)" class="java.lang.Float"/>
+	<field name="mediaCombustivel(numeroViagem)" class="java.lang.Float"/>
+	<field name="mediaPrecoCombustivel(numeroViagem)" class="java.lang.Float"/>
+	<variable name="valorAbastecimento_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorAbastecimento}]]></variableExpression>
+	</variable>
+	<variable name="valorAbastecimento_2" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorAbastecimento}]]></variableExpression>
+	</variable>
+	<variable name="litrosAbastecimento_1" class="java.lang.Float" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{litrosAbastecimento}]]></variableExpression>
+	</variable>
+	<variable name="valorGorjeta_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorGorjeta}]]></variableExpression>
+	</variable>
+	<variable name="valorDespesaGeral_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorDespesaGeral}]]></variableExpression>
+	</variable>
+	<variable name="valorOficina_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorOficina}]]></variableExpression>
+	</variable>
+	<variable name="valorComissao_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorComissao}]]></variableExpression>
+	</variable>
+	<variable name="valorPedagios_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorPedagios}]]></variableExpression>
+	</variable>
+	<variable name="valorPneus_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorPneus}]]></variableExpression>
+	</variable>
+	<variable name="valorOleoFiltro_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorOleoFiltro}]]></variableExpression>
+	</variable>
+	<variable name="viagem_valorAbastecimento_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="saldoAnterior_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoAnterior}]]></variableExpression>
+	</variable>
+	<variable name="kmFinal_1" class="java.lang.Float" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{kmFinal}]]></variableExpression>
+	</variable>
+	<variable name="kmInicial_1" class="java.lang.Float" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{kmInicial}]]></variableExpression>
+	</variable>
+	<variable name="totalDespesas(numeroViagem)_1" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalDespesas(numeroViagem)}]]></variableExpression>
+	</variable>
+	<variable name="somaFretes(numeroViagem)_1" class="java.lang.Float" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{somaFretes(numeroViagem)}]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="95">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="2" width="802" height="93" backcolor="#86DBDB" uuid="35f0e2b4-b390-49dc-a3aa-34dd4ec93457"/>
+				<textField evaluationTime="Column" pattern="#,##0.00">
+					<reportElement mode="Transparent" x="179" y="73" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="2dd51da2-8abe-452e-a9bd-cb7bae108d29"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{valorGorjeta_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement mode="Transparent" x="201" y="30" width="84" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="bb1c3142-feff-48e6-b978-3a21a3c17394"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{saldoViagem(numeroViagem)}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Column">
+					<reportElement x="59" y="30" width="68" height="20" uuid="b0b85252-2ba4-4f1c-9b0d-2b6f5a78d251"/>
+					<textFieldExpression><![CDATA[$V{somaFretes(numeroViagem)_1}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="59" y="72" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="938c9637-13b5-4dec-8065-18f4e166868a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{valorAbastecimento_2}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="119" y="72" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="fa326f23-65d4-40f7-b321-f59178f96926"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{litrosAbastecimento_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="239" y="72" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="8cf2200f-5015-48ca-86d7-aead2beb9e8e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{valorDespesaGeral_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="299" y="72" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="2d685182-a915-4a33-90f7-daa6ce470294"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{valorOficina_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="359" y="72" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="439c2df7-c771-41bf-a3f6-5d967f1a2166"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{valorComissao_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="419" y="72" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="cb211c47-03ff-480c-bf12-cf42649f62bb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{valorPedagios_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="479" y="72" width="60" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="cbc18aad-01fc-4ec6-a9ba-cfaa62ea507b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{valorPneus_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="539" y="72" width="69" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="32f5f5c3-aa18-4f09-9471-6135508da123"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{valorOleoFiltro_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column" pattern="#,##0.00">
+				<reportElement mode="Transparent" x="285" y="30" width="74" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="37ded5b1-72d0-4597-ab0d-44300d3fc2c4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{saldoAnterior_1}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column">
+				<reportElement mode="Transparent" x="435" y="30" width="74" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="9bc03d0f-6df7-4669-9a9e-311c13dd79ef"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{kmFinal_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement mode="Transparent" x="359" y="30" width="76" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="b81f2a63-f6ff-4df9-83e0-3253bf54a24b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoAtual(numeroViagem)}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Column">
+				<reportElement mode="Transparent" x="509" y="30" width="74" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="dc928069-3ce2-4979-92b7-d67dde62368a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{kmInicial_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="583" y="30" width="94" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="dbf74038-33b8-4469-9459-2a328b4ab7ba"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kmRodado(numeroViagem)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement mode="Transparent" x="127" y="30" width="74" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="f2cf1480-cfe6-474e-9753-f4bfb7034c46"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalDespesas(numeroViagem)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="127" y="10" width="74" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="06dfb309-bd0a-4137-9084-f3f8a0c6bd1c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Desp.Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="201" y="10" width="84" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="30c210d7-82a5-4dfa-bec1-099831fa59ff"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[SaldoViagem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="59" y="10" width="74" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="1d73df60-1c62-477a-9f92-9abb4716c4e4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fretes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="285" y="10" width="74" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="ad29b2aa-ead3-447a-9017-bd1a4b0018b3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Saldo Ant.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="359" y="10" width="76" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="ac88634f-de4f-4f08-a6cd-1630854b3c2c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Saldo Atual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="435" y="10" width="74" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="05948317-cd4a-4f4b-8a97-c2f8fd861062"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Km Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="509" y="10" width="74" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="e00d488c-d6b3-46c3-b6be-5d884d25a81e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Km Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="583" y="10" width="94" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="daea4a1a-9c50-46d7-a431-cbca6f9fb5b8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Km Rodados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="10" width="59" height="22" forecolor="#0000CC" backcolor="#FFFFFF" uuid="37407b89-377e-499a-aa56-3c4c421d54cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Viagem]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="32" width="59" height="20" forecolor="#0000CC" backcolor="#FFFFFF" uuid="ff55025c-1b11-4b30-87b7-aa8107c10037"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroViagem}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="72" width="59" height="20" forecolor="#000099" uuid="d3a65616-dc0c-4a76-9b21-55c542bb3c70"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="700" y="30" width="78" height="20" forecolor="#003399" uuid="523977a9-040b-44ce-98e8-4794543b19f8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mediaCombustivel(numeroViagem)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="700" y="72" width="78" height="20" forecolor="#003399" uuid="53f16a6b-aa6c-4ea2-94be-fe9ee7ae79d9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mediaPrecoCombustivel(numeroViagem)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="700" y="10" width="78" height="20" forecolor="#003399" uuid="93315080-f23b-4b73-9a0f-a2186bb5439f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Média Cons.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="700" y="52" width="78" height="20" forecolor="#003399" uuid="924f4ca5-7eff-4d85-85be-7f1ff77075c9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Média Preço]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<summary>
+		<band height="167">
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="0" y="18" width="802" height="54" uuid="a43bd4cd-84bf-4d99-a174-f735ef9ff1d8"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="via" uuid="6326de25-25ae-468f-a2de-25a10c23bd2a">
+						<datasetParameter name="var1">
+							<datasetParameterExpression><![CDATA[$P{var2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="61" uuid="dc94716f-bdec-4004-801b-1b03f2e67ab8">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="37f93fa7-430b-4e1e-881b-0242246c89a3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Data]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="dd/MM/yyyy">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="1f8b2b93-10c1-49b2-a21d-3abef541123a"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_lancamentoData}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="47667dcc-559b-4b2c-ad4c-18868c2ef047">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="ba5b90ca-6454-44d8-8e90-169159cb0810"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Abast.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="57312b7f-7e1f-4b8a-a247-68f5ba33523c"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorAbastecimento}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="e831c112-ceec-4aa5-84d8-53c9789319a7">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="0af8e82e-de72-41c8-b96b-04d2df7a3b51"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Litros]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="3e9fc1ec-d73e-4b35-8259-acae266a82b8"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_litrosAbastecimento}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="d1d3635b-c527-4517-9dc2-8a211795b41a">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="5e91a11b-088e-47c9-9493-610c91f2d929"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Gorjeta]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="a1a34a6f-e003-42fb-ba30-ab7f6d62e2b9"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorGorjeta}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="161891be-4fbe-4e7c-8f17-0bd826dc858d">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="74120125-3252-4f84-b77f-9931ceb2c41f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Despesa Geral]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="750ed2b9-fc1a-405e-97f2-c7165e07722b"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorDespesaGeral}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="f0a40dd3-9c77-4d84-84f5-2b0a2286aec6">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="b95b8cd4-1a93-46cd-92d1-b3284ed108cc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Oficina]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="693ad397-9a20-45c1-82fc-84159c799615"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorOficina}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="357db09b-7425-4532-852f-0ba180581575">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="b518a396-8d5c-45c5-9455-4a5a42fdad62"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Comissão]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="cbac90be-437e-434d-b48b-dd5144d76c8b"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorComissao}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="33774ff9-9d5e-4bef-b0df-fbd3faca3133">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="26400b5c-8b27-43a8-b9f8-c269edc4d59e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Pedágios]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="b3527792-7010-44e4-876f-814107707c07"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorPedagios}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="2d03ef8d-b96b-4a03-8aa7-f42a53fc0af6">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="e1a434b7-c6e3-4ec8-9b0d-143ce077f302"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Pneus]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="b0fd3ca8-8184-4bba-a5a7-c42b80e15cf4"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorPneus}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="926defb2-a242-4a85-a612-8c1c0a70b511">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#0000CC" uuid="b76eca94-d2d7-4f87-bc30-9d4b7f801b4f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ÓleoFiltro]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#0000CC" uuid="ff8030f2-6adc-4538-9dfd-6f6f0071a015"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{viagem_valorOleoFiltro}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="198" uuid="643fd912-d913-419c-bab8-dc950f76f229">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="198" height="30" forecolor="#0000CC" uuid="5a7e5fab-452b-4602-a9f5-dac106094172"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Descrição]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="198" height="20" uuid="0fb259dc-6440-431d-ad5c-5fe701768fe8"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{viagem_descricao}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>
