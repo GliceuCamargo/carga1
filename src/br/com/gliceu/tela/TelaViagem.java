@@ -166,13 +166,15 @@ public final class TelaViagem extends javax.swing.JFrame {
             rs1 = pst1.executeQuery();
             while (rs.next()) {
                 double somaDestino = rs.getDouble(1);
-                txtTotalFreteDestino.setText(String.valueOf(somaDestino));
+                String resultado = String.format("%.2f", somaDestino);
+                txtTotalFreteDestino.setText(String.valueOf(resultado));
                 while (rs1.next()) {
                     double somaRetorno = rs1.getDouble(1);
-                    txtTotalFreteRetorno.setText(String.valueOf(somaRetorno));
+                    String resultado1 = String.format("%.2f", somaRetorno);
+                    txtTotalFreteRetorno.setText(String.valueOf(resultado1));
                     somaFretes = somaDestino + somaRetorno;
-                    String resultado = String.format("%.2f", somaFretes);
-                    txtTotalFretes.setText(resultado);
+                    String resultado2 = String.format("%.2f", somaFretes);
+                    txtTotalFretes.setText(resultado2);
                 }
             }
 
@@ -544,6 +546,7 @@ public final class TelaViagem extends javax.swing.JFrame {
     }
 
     /* ***********************************************************************************************/
+    @SuppressWarnings("empty-statement")
     public void limpar() {
         txtNumViagem.setText(null);
         txtData.setText(null);

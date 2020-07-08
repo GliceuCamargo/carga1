@@ -250,14 +250,15 @@ FROM
 					<textFieldExpression><![CDATA[$V{valorGorjeta_1}]]></textFieldExpression>
 				</textField>
 				<textField pattern="#,##0.00">
-					<reportElement mode="Transparent" x="201" y="30" width="84" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="bb1c3142-feff-48e6-b978-3a21a3c17394"/>
+					<reportElement mode="Transparent" x="201" y="28" width="84" height="20" forecolor="#003399" backcolor="#FFFFFF" uuid="bb1c3142-feff-48e6-b978-3a21a3c17394"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{saldoViagem(numeroViagem)}]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Column">
-					<reportElement x="59" y="30" width="68" height="20" uuid="b0b85252-2ba4-4f1c-9b0d-2b6f5a78d251"/>
+					<reportElement x="87" y="28" width="60" height="20" forecolor="#003399" uuid="b0b85252-2ba4-4f1c-9b0d-2b6f5a78d251"/>
+					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression><![CDATA[$V{somaFretes(numeroViagem)_1}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -360,12 +361,12 @@ FROM
 				<text><![CDATA[SaldoViagem]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="59" y="10" width="74" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="1d73df60-1c62-477a-9f92-9abb4716c4e4"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement mode="Transparent" x="87" y="10" width="50" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="1d73df60-1c62-477a-9f92-9abb4716c4e4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Fretes]]></text>
+				<text><![CDATA[ Fretes]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="285" y="10" width="74" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="ad29b2aa-ead3-447a-9017-bd1a4b0018b3"/>
